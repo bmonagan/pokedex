@@ -1,9 +1,5 @@
 import { createInterface } from "node:readline";
-interface ReplIO {
-  input: NodeJS.ReadableStream;
-  output: NodeJS.WritableStream;
-  prompt: string;
-}
+import { REPL_MODE_STRICT } from "node:repl";
 
 export function cleanInput(input: string): string[] {
     let arr: string[] = input.split(" ");
@@ -17,3 +13,11 @@ export function cleanInput(input: string): string[] {
     return cleaned_arr;
 }
 
+export function startREPL(){
+    const makeReadline = createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        prompt: "> "
+        });
+
+}
