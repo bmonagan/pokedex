@@ -1,3 +1,10 @@
+import { createInterface } from "node:readline";
+interface ReplIO {
+  input: NodeJS.ReadableStream;
+  output: NodeJS.WritableStream;
+  prompt: string;
+}
+
 export function cleanInput(input: string): string[] {
     let arr: string[] = input.split(" ");
     let cleaned_arr: string[] = [];
@@ -9,3 +16,4 @@ export function cleanInput(input: string): string[] {
     }
     return cleaned_arr;
 }
+
