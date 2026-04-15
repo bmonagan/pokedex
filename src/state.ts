@@ -1,4 +1,6 @@
 import { createInterface, type Interface } from "readline";
+import { getCommands } from "./command_register.js";
+
 
 export type CLICommand = {
   name: string;
@@ -10,4 +12,14 @@ export type State = {
     readline: Interface;
     commands: Record <string, CLICommand>;
 
-    }
+};
+
+export function initState(): State {
+    const readline = createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        prompt: "> "
+    });
+    const commands = getCommands();
+    return {readline: readline, commands: commands};
+}
