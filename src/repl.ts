@@ -1,5 +1,4 @@
 import { createInterface } from "node:readline";
-import { REPL_MODE_STRICT } from "node:repl";
 
 export function cleanInput(input: string): string[] {
     let arr: string[] = input.split(" ");
@@ -14,10 +13,34 @@ export function cleanInput(input: string): string[] {
 }
 
 export function startREPL(){
-    const makeReadline = createInterface({
+    const rl = createInterface({
         input: process.stdin,
         output: process.stdout,
         prompt: "> "
-        });
+    });
+    console.log("Activating....");
+    console.log("Ready.");
+    rl.prompt(); // show prompt first
 
+    rl.on("line", (line) => {
+        const tokens = cleanInput(line);
+
+        if (tokens.length === 0){
+            rl.prompt();
+            rl.close();
+            return;
+        }
+
+        if (line === "exit") {
+            rl.close();
+            return;
+        }
+        console.log(`Your command was: ${tokens[0]}`);
+
+        rl.prompt(); // show prompt again for next input
+    });
+
+    rl.on("close", () => {
+        console.log("goodbye");
+    });
 }
