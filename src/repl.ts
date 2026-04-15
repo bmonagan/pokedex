@@ -1,4 +1,5 @@
 import { createInterface } from "node:readline";
+import { getCommands } from "./cli_commands.js";
 
 export function cleanInput(input: string): string[] {
     let arr: string[] = input.split(" ");
@@ -23,19 +24,18 @@ export function startREPL(){
 
     rl.on("line", (line) => {
         const tokens = cleanInput(line);
-
-        if (tokens.length === 0){
-            rl.prompt();
-            rl.close();
-            return;
+        const commandName = tokens[0]; // first word is the command
+        
+        const commands = getCommands();
+        const cmd = commands[commandName];
+        
+        if (cmd) {
+            cmd.callback(commands);
+        } else {
+            console.log("unknown command:", commandName);
         }
-
-        if (line === "exit") {
-            rl.close();
-            return;
-        }
-
-        rl.prompt(); // show prompt again for next input
+        
+        rl.prompt();
     });
 
     rl.on("close", () => {
