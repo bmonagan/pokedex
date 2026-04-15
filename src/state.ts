@@ -24,5 +24,6 @@ export function initState(): State {
         prompt: "> "
     });
     const commands = getCommands();
-    return {readline: readline, commands: commands};
+    const pokeapi = new PokeAPI();
+    return {readline: readline, commands: commands, pokeapi: pokeapi, nextLocationsURL: null, prevLocationsURL: null};
 }
