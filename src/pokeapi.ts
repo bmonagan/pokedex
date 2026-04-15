@@ -6,7 +6,7 @@ export class PokeAPI {
 
   constructor() {}
 
-  async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
+  async fetchLocations(pageURL?: string | null): Promise<ShallowLocations> {
     const url = pageURL ?? PokeAPI.baseLocationURL;
 
     const response = await fetch(url);
