@@ -1,5 +1,5 @@
 import { createInterface } from "node:readline";
-import { getCommands } from "./cli_commands.js";
+import { getCommands } from "./command_register.js";
 
 export function cleanInput(input: string): string[] {
     let arr: string[] = input.split(" ");
