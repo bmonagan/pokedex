@@ -1,4 +1,4 @@
-async function getPokeAPILocations(url){
+async function getPokeAPILocations(url: string){
     
 
     try {
