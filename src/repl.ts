@@ -18,9 +18,8 @@ export function startREPL(){
         output: process.stdout,
         prompt: "> "
     });
-    console.log("Activating....");
-    console.log("Ready.");
-    rl.prompt(); // show prompt first
+    console.log("Pokedex started.");
+    rl.prompt(); 
 
     rl.on("line", (line) => {
         const tokens = cleanInput(line);
@@ -35,7 +34,6 @@ export function startREPL(){
             rl.close();
             return;
         }
-        console.log(`Your command was: ${tokens[0]}`);
 
         rl.prompt(); // show prompt again for next input
     });
