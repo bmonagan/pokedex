@@ -17,10 +17,10 @@ export class PokeAPI {
     const locations: ShallowLocations = await response.json();
     return locations;
   }
-
-  async fetchLocation(locationName: string): Promise<Location> {
-    // implement this
-  }
+    //TODO: IMPLEMENT
+//   async fetchLocation(locationName: string): Promise<Location> {
+//     // implement this
+//   }
 }
 
 export type ShallowLocations = {
