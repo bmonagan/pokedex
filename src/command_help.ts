@@ -1,5 +1,5 @@
 import { getCommands } from "./cli_commands.js";
-export function helpCommand() {
+export function commandHelp() {
     console.log("Welcome to the Pokedex");
     console.log("Usage:");
     console.log("\n");
