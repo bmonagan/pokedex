@@ -36,3 +36,9 @@ coverage/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Notes and personal docs
+notes.md
+*.notes.md
+TODO.md
+SCRATCH.md
