@@ -7,8 +7,9 @@ export async function commandExplore(state: State, areaName: string) {
     }
     else {
         const names = location.pokemon_encounters.map((e) => e.pokemon.name);
-        for (const name in names) {
-            console.log(name);
+        console.log(`Exploring ${areaName}`)
+        for (const name of names) {
+            console.log(`- ${name}`);
         }
     }
 }
