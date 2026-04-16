@@ -47,7 +47,7 @@ export function getCommands(): Record<string, CLICommand> {
     },
     pokedex: {
       name: "pokedex",
-      description: "Shows all the pokemon you have currently caught";
+      description: "Shows all the pokemon you have currently caught",
       callback: commandPokedex
     },
     // can add more commands here
