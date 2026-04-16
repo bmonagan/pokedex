@@ -20,7 +20,7 @@ export async function commandCatch(state: State, pokemonName: string): Promise<v
 }
 
 async function isCaught(base_experience: number): Promise<boolean> {
-    const catch_chance = base_experience/300;
+    const catch_chance = base_experience/450;
     const user_roll = Math.random();
     return user_roll > catch_chance;
 }
