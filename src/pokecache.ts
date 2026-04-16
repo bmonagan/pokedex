@@ -14,4 +14,10 @@ export class Cache {
       val: val,
     });
   }
-}
+  get<T>(key: string): T | undefined {
+    const entry = this.#cache.get(key) as CacheEntry<T> | undefined;
+    if (!entry) return undefined;
+    return entry.val;
+
+    }
+  }
