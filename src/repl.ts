@@ -22,12 +22,13 @@ export function startREPL(state: State){
     rl.on("line", (line) => {
         const tokens = cleanInput(line);
         const commandName = tokens[0]; // first word is the command
+        const args = tokens.slice(1);
         
         // const commands = getCommands();
         const cmd = commands[commandName];
         
         if (cmd) {
-            cmd.callback(state);
+            cmd.callback(state, ...args);
         } else {
             console.log("unknown command:", commandName);
         }
