@@ -3,7 +3,7 @@ import { Cache } from "./pokecache.js";
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
   private static readonly baseLocationURL = "https://pokeapi.co/api/v2/location-area/";
-  private static readonly location_endpoint_url = "https://pokeapi.co/api/v2/location/";
+  private static readonly locationEndpointURL = "https://pokeapi.co/api/v2/location-area/";
   private cache: Cache;
   
 
@@ -29,7 +29,7 @@ export class PokeAPI {
   }
     
   async fetchLocation(locationName: string): Promise<Location_endpoint> {
-    const combined_url = PokeAPI.location_endpoint_url + locationName;
+    const combined_url = PokeAPI.locationEndpointURL + locationName;
     const cachedLocationEndpoint = this.cache.get<Location_endpoint>(combined_url);
     if (cachedLocationEndpoint) {
       return cachedLocationEndpoint;
