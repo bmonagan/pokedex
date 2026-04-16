@@ -4,7 +4,7 @@ export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
   private static readonly baseLocationURL = "https://pokeapi.co/api/v2/location-area/";
   private static readonly locationEndpointURL = "https://pokeapi.co/api/v2/location-area/";
-  private static readonly pokemonEndpointURL = "https://pokeapi.co/api/v2/pokemon/";
+  public readonly pokemonEndpointURL = "https://pokeapi.co/api/v2/pokemon/";
   private cache: Cache;
   
 
