@@ -3,7 +3,9 @@ import { Cache } from "./pokecache.js";
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
   private static readonly baseLocationURL = "https://pokeapi.co/api/v2/location-area/";
+  private static readonly location_endpoint_url = "https://pokeapi.co/api/v2/location/";
   private cache: Cache;
+  
 
   constructor(cacheIntervalMs: number = 60_000) {
     this.cache = new Cache(cacheIntervalMs);
@@ -25,11 +27,25 @@ export class PokeAPI {
     this.cache.add(url, locations);
     return locations;
   }
-    //TODO: IMPLEMENT
-    async fetchLocation(locationName: string): Promise<Location> {
-      
- 
-}
+    
+  async fetchLocation(locationName: string): Promise<Location_endpoint> {
+    const combined_url = PokeAPI.location_endpoint_url + locationName;
+    const cachedLocationEndpoint = this.cache.get<Location_endpoint>(combined_url);
+    if (cachedLocationEndpoint) {
+      return cachedLocationEndpoint;
+    }
+
+    const response = await fetch(combined_url);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch location endpoint: ${response.status} ${response.statusText}`,
+      );
+    }
+
+    const locationEndpoint: Location_endpoint = await response.json();
+    this.cache.add(combined_url, locationEndpoint);
+    return locationEndpoint;
+  }
 }
 
 export type ShallowLocations = {
