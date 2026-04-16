@@ -7,7 +7,7 @@ export async function commandCatch(state: State, pokemonName: string): Promise<v
     }
     else {
         const pokemon:caughtPokemon = await response.json();
-        console.log(`Throwing a Pokeball at ${pokemonName}`);
+        console.log(`Throwing a Pokeball at ${pokemonName}...`);
         if (await isCaught(pokemon.base_experience)) { 
             console.log(`${pokemonName} was caught!`);
             state.pokedex[pokemon.name] = pokemon;
