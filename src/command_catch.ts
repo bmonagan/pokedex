@@ -10,7 +10,7 @@ export async function commandCatch(state: State, pokemonName: string): Promise<v
         console.log(`Throwing a Pokeball at ${pokemonName}`);
         if (await isCaught(pokemon.base_experience)) { 
             console.log(`${pokemonName} was caught!`);
-            state.pokedex.set(pokemon.name, pokemon);
+            state.pokedex[pokemon.name] = pokemon;
         }
         else {
             console.log(`${pokemonName} escaped!`);
