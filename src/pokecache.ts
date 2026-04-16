@@ -29,4 +29,8 @@ export class Cache {
       }
     }
   }
+  #startReapLoop() {
+    const intervalId = setInterval(() => this.#reap(), this.#interval);
+    this.#reapIntervalId = intervalId;
+  }
 }
