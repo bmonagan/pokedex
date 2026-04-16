@@ -20,6 +20,13 @@ export class Cache {
     const entry = this.#cache.get(key) as CacheEntry<T> | undefined;
     if (!entry) return undefined;
     return entry.val;
+  }
 
+  #reap() {
+    for (const [key, object] of this.#cache) {
+      if (object.createdAt <= Date.now() - this.#interval) {
+        this.#cache.delete(key);
+      }
     }
   }
+}
