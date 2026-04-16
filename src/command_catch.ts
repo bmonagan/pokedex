@@ -1,14 +1,16 @@
 import { State } from "./state.js";
+import type { caughtPokemon } from "./caught_pokemon.js";
 export async function commandCatch(state: State, pokemonName: string): Promise<void> {
     const response = await fetch(state.pokeapi.pokemonEndpointURL + pokemonName);
     if (!response.ok) {
         console.log("Pokemon not found..");
     }
     else {
-        const pokemon = await response.json();
+        const pokemon:caughtPokemon = await response.json();
         console.log(`Throwing a Pokeball at ${pokemonName}`);
         if (await isCaught(pokemon.base_experience)) { 
             console.log(`${pokemonName} was caught!`);
+            state.pokedex.set(pokemon.name, pokemon);
         }
         else {
             console.log(`${pokemonName} escaped!`);
